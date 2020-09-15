@@ -159,8 +159,10 @@ siege -c10 -t30S  -v --content-type "application/json" 'http://reservation:8080/
 kubectl get deploy pay -w
 ```
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
+
 ![캡처4111](https://user-images.githubusercontent.com/31124658/93185437-5c021d00-f778-11ea-9ab6-41588ed2c9f5.JPG)
 
 - siege 의 로그를 확인
+
 ![캡처4112](https://user-images.githubusercontent.com/31124658/93185435-5b698680-f778-11ea-817c-a2dbbe272b71.JPG)
 
