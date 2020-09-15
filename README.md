@@ -158,9 +158,9 @@ siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081
 kubectl get deploy pay -w
 ```
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
-```
 ![캡처4111](https://user-images.githubusercontent.com/31124658/93185437-5c021d00-f778-11ea-9ab6-41588ed2c9f5.JPG)
 
+```
 NAME    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 pay     1         1         1            1           17s
 pay     1         2         1            1           45s
@@ -168,9 +168,9 @@ pay     1         4         1            1           1m
 :
 ```
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
-```
 ![캡처4112](https://user-images.githubusercontent.com/31124658/93185435-5b698680-f778-11ea-817c-a2dbbe272b71.JPG)
 
+```
 Transactions:		        5078 hits
 Availability:		       92.45 %
 Elapsed time:		       120 secs
