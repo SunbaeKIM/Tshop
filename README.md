@@ -23,7 +23,7 @@
   2. 장애격리
 
   ● 배정관리 서비스가 되지않더라도 예약접수는 정상적으로 처리가 되어야한다. Async (event-driven)
-  ●   Circuit breaker, fallback 처리 필요
+  ● Circuit breaker, fallback 처리 필요
 
 
 ### Event Storming 결과
