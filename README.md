@@ -44,7 +44,7 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 
 ### 바운디드 컨텍스트로 묶기
 ![캡처2112](https://user-images.githubusercontent.com/31124658/93170240-ceb3ce00-f761-11ea-95fc-f25012045f20.JPG)
-- app의 reservation, assignment, product 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
+- Tshop의 예약(reservation), 할당(assignment), 상품(product) 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
 ### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
 ![캡처2113](https://user-images.githubusercontent.com/31124658/93170245-cf4c6480-f761-11ea-95d9-7a66d79179e1.JPG)
