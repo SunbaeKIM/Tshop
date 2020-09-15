@@ -162,6 +162,5 @@ kubectl get deploy pay -w
 ![캡처4111](https://user-images.githubusercontent.com/31124658/93185437-5c021d00-f778-11ea-9ab6-41588ed2c9f5.JPG)
 
 - siege 의 로그를 확인
-
 ![캡처4112](https://user-images.githubusercontent.com/31124658/93185435-5b698680-f778-11ea-817c-a2dbbe272b71.JPG)
 
