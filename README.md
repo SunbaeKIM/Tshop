@@ -39,26 +39,40 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 
 ![event_2](https://user-images.githubusercontent.com/45332921/93048891-e3795e80-f69a-11ea-8c4b-2cefe99b1131.jpg)
 
+
 ### 액터, 커맨드 부착하여 읽기 좋게
+
 ![캡처3111](https://user-images.githubusercontent.com/31124658/93174025-5dc3e480-f768-11ea-9190-f50337f9062e.JPG)
 
+
 ### 바운디드 컨텍스트로 묶기
+
 ![캡처3112](https://user-images.githubusercontent.com/31124658/93174029-5e5c7b00-f768-11ea-83d4-448f5df2f49f.JPG)
+
 - Tshop의 예약(reservation), 할당(assignment), 상품(product) 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
+
 ### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
+
 ![캡처3113](https://user-images.githubusercontent.com/31124658/93174035-60263e80-f768-11ea-84af-6b509f16da16.JPG)
 
+
 ### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
+
 ![캡처3114](https://user-images.githubusercontent.com/31124658/93174032-5ef51180-f768-11ea-845a-9a8ab1fb3d44.JPG)
 
+
 ### 뷰모델 추가
+
 ![캡처3115](https://user-images.githubusercontent.com/31124658/93174033-5ef51180-f768-11ea-9a0b-ddc9cb899023.JPG)
-    - 예약시 상품의 재고를 확인 한 뒤 수량이 충분한 경우 고객의 근처 대리점에 할당하여 예약처리 한다.
-    
+
+- 예약시 상품의 재고를 확인 한 뒤 수량이 충분한 경우 고객의 근처 대리점에 할당하여 예약처리 한다.
+
+
 ### 완성된 1차 모형
 ![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
-    
+
+
 ### 1차 모형에 대한 기능적/비기능적 요구사항을 커버하는지 검증
     - 고객이 상품을 선택하여 주문한다. (OK)
     - 주문하면 상품재고를 판단하여 예약신청 or 예약불가 처리한다. (OK)
@@ -119,6 +133,8 @@ mvn spring-boot:run
 - 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
 - 동시사용자 2명
 - 5초 동안 실시
+
 ![캡처1111](https://user-images.githubusercontent.com/31124658/93170285-e25f3480-f761-11ea-951c-61d41566af9b.JPG)
+
 - Retry 의 설정 (istio)
 - Availability 가 높아진 것을 확인 (siege)
