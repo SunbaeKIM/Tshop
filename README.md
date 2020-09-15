@@ -117,14 +117,92 @@ mvn spring-boot:run
 ## CQRS
 
 ## 동기식 호출 과 Fallback 처리
-예약과 재고확인/재고변경 호출은 동기식 트랜잭션으로 처리 
+예약과 재고확인/재고변경 호출은 동기식 트랜잭션으로 처리
 
-## 비동기식 호출
-예약요청/예약취소 시 처리는 비동기 트랜잭션으로 처리
+```
+    /**
+     * 예약접수를 신청하면 상품수량을 확인하고 예약가능/불가여부를 판단
+     * */
+    @PrePersist
+    public void onPrePersist(){
+        //Tshop.external.Product product = new Tshop.external.Product();
+
+        String checkQuantity = ReservationApplication.applicationContext.getBean(Tshop.external.ProductService.class).checkProductQuantity(this.getProductId().toString());
+
+        if(Integer.parseInt(checkQuantity) > 0){
+            this.setStatus("예약신청");
+        }else{
+            this.setStatus("예약불가");
+        }
+    }
+```
+-  예약신청을 하면 현 재고상태를 확이하여, 신청/불가 판단
+
+```
+@RequiredArgsConstructor
+@Service
+public class ProductService {
+    private final ProductRepository productRepository;
+
+    @Transactional
+    public String checkQuantityByProductId(String productId) {
+
+        Optional<Product> optionalProduct = productRepository.findById(Long.parseLong(productId));
+        Product product = optionalProduct.orElseGet(Product::new);
+        // 상품이 없을경우 재고0으로 전달
+        if(product.getQuantity() == null) product.setQuantity(0);
+        // 상품재고가 있는 경우 재고 -1 하고 할당으로 이벤트 전달
+        if( product.getQuantity() > 0 ){
+            product.setQuantity(product.getQuantity()-1);
+            productRepository.save(product);
+            //product.pulishQuantityChecked();
+        }
+        return product.getQuantity().toString() ;
+    }
+}
+```
+- 상품재고를 판단하여 리턴
+
+```
+    /**
+     * 예약신청 가능이면 배정관리서비스로 예약번호 전송
+     * */
+    @PostPersist
+    public void onPostPersist(){
+        ReservationRequested reservationRequested = new ReservationRequested();
+        BeanUtils.copyProperties(this, reservationRequested);
+        if("예약신청".equals(this.getStatus())) reservationRequested.publishAfterCommit();
+    }
+    /**
+```
+- 상태가 예약신청가능한 상태면 배정 
+
+
+
+
+
+
+
 
 ## 폴리글랏
 
-고객관리 서비스(customer)의 시나리오인 주문상태, 배달상태 변경에 따라 고객에게 카톡메시지 보내는 기능의 구현 파트는 해당 팀이 python 을 이용하여 구현하기로 하였다. 해당 파이썬 구현체는 각 이벤트를 수신하여 처리하는 Kafka consumer 로 구현되었고 코드는 다음과 같다: => 
+고객관리 서비스(customercenter)에선 H2가 아닌 hsql를 적용함
+
+```
+<name>customercenter</name>
+<!-- <dependency>
+<groupId>com.h2database</groupId>
+<artifactId>h2</artifactId>
+<scope>runtime</scope>
+</dependency>-->
+
+<dependency>
+<groupId>org.hsqldb</groupId>
+<artifactId>hsqldb</artifactId>
+<version>2.4.0</version>
+<scope>runtime</scope>
+</dependency>
+```
 
 # 운영
 
