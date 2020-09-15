@@ -88,7 +88,9 @@ http PATCH localhost:8088/reservations/8 status="예약취소"
 
 ```
 
+## SAGA 패턴
 
+## CQRS
 
 ## 동기식 호출 과 Fallback 처리
 
@@ -99,9 +101,5 @@ http PATCH localhost:8088/reservations/8 status="예약취소"
 ## 폴리글랏 
 
 ## 서킷 브레이킹 
+![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
 
-## SAGA 패턴
-
-## CQRS
-
-## 
