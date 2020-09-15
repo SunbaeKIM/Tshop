@@ -20,9 +20,10 @@
 
   ● 상품재고가 없는 경우 예약은 접수처리가 되지 않는다. Sync 호출(Req/Res)
   
-  2. 장애격리
+  1. 장애격리
 
   ● 배정관리 서비스가 되지않더라도 예약접수는 정상적으로 처리가 되어야한다. Async (event-driven)
+  
   ● Circuit breaker, fallback 처리 필요
 
 
@@ -145,11 +146,11 @@ mvn spring-boot:run
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 
-- 결제서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
+- 결제서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 10프로를 넘어서면 replica 를 10개까지 늘려준다:
 ```
 kubectl autoscale deploy reservation --min=1 --max=10 --cpu-percent=10
 ```
-- CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
+- CB 에서 했던 방식대로 워크로드를 30초 동안 걸어준다.
 ```
 siege -c10 -t30S  -v --content-type "application/json" 'http://reservation:8080/reservations POST {"productId":1}'
 ```
@@ -160,6 +161,6 @@ kubectl get deploy pay -w
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
 ![캡처4111](https://user-images.githubusercontent.com/31124658/93185437-5c021d00-f778-11ea-9ab6-41588ed2c9f5.JPG)
 
-- siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
+- siege 의 로그를 확인
 ![캡처4112](https://user-images.githubusercontent.com/31124658/93185435-5b698680-f778-11ea-817c-a2dbbe272b71.JPG)
 
