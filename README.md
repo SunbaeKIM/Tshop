@@ -90,15 +90,9 @@ mvn spring-boot:run
   - 상품 -> product
 
 ## 적용 후 REST API 의 테스트
-```
-- 서비스의 예약처리
-http POST localhost:8088/reservations productId=1
-
-- 서비스의 예약취소 처리
-http PATCH localhost:8088/reservations/1 status="예약취소"
-
-- 예약상태 확인
-http localhost:8088/reservations/1
+- 서비스의 예약처리 : http POST localhost:8088/reservations productId=1
+- 서비스의 예약취소 처리 : http PATCH localhost:8088/reservations/1 status="예약취소"
+- 예약상태 확인 : http localhost:8088/reservations/1
 ```
 
 ## SAGA 패턴
