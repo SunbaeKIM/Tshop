@@ -26,7 +26,6 @@
   ●   Circuit breaker, fallback 처리 필요
 
 
-
 ### Event Storming 결과
   
 http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4ead0bc1936dd945e6cf/-MGqrwsnJeQJI0OZPGrm
@@ -40,23 +39,27 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 
 ![event_2](https://user-images.githubusercontent.com/45332921/93048891-e3795e80-f69a-11ea-8c4b-2cefe99b1131.jpg)
 
+### 액터, 커맨드 부착하여 읽기 좋게
 ![캡처2111](https://user-images.githubusercontent.com/31124658/93170244-cf4c6480-f761-11ea-9083-d181a1aeab43.JPG)
 
+### 어그리게잇으로 묶기
 ![캡처2112](https://user-images.githubusercontent.com/31124658/93170240-ceb3ce00-f761-11ea-95fc-f25012045f20.JPG)
 
+- app의 reservation, assignment, product 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
+
+### 바운디드 컨텍스트로 묶기
 ![캡처2113](https://user-images.githubusercontent.com/31124658/93170245-cf4c6480-f761-11ea-95d9-7a66d79179e1.JPG)
 
+### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
 ![캡처2114](https://user-images.githubusercontent.com/31124658/93170238-cd82a100-f761-11ea-90c5-627dde4c3b85.JPG)
 
+### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
 ![캡처2115](https://user-images.githubusercontent.com/31124658/93170232-cc517400-f761-11ea-92c3-350a5ccf807a.JPG)
 
 ### 완성된 1차 모형
-
 ![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
 
-
     - View Model 추가중
-    
     
 ### 1차 모형에 대한 기능적/비기능적 요구사항을 커버하는지 검증
     - 고객이 상품을 선택하여 주문한다. (OK)
@@ -65,15 +68,28 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
     - 고객이 예약을 취소한다. (OK)
     - 예약이 취소되면 대리점배정이 취소되고, 재고가 변경된다. (OK)
     
-    
 # 구현:
+
+분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
+
+```
+cd reservation
+mvn spring-boot:run
+
+cd assignment
+mvn spring-boot:run 
+
+cd product
+mvn spring-boot:run  
+
+cd gateway
+mvn spring-boot:run  
 
 ## DDD 의 적용
 - 각 서비스내에 도출된 핵심 객체를 Entity 로 선언
-  - 주문
+  - 예약
   - 배정
   - 상품
-
 
 ## 적용 후 REST API 의 테스트
 ```
@@ -84,7 +100,7 @@ http POST localhost:8088/reservations productId=1
 http PATCH localhost:8088/reservations/8 status="예약취소"
 
 # 에약정보 확인
-?????
+http localhost:8088/reservations  
 
 ```
 
