@@ -18,13 +18,13 @@
 
   1. 트랜잭션
 
-  ● 상품재고가 없는 경우 예약은 접수처리가 되지 않는다. Sync 호출(Req/Res)
+     - 상품재고가 없는 경우 예약은 접수처리가 되지 않는다. Sync 호출(Req/Res)
   
-  1. 장애격리
+  2. 장애격리
 
-  ● 배정관리 서비스가 되지않더라도 예약접수는 정상적으로 처리가 되어야한다. Async (event-driven)
+     - 배정관리 서비스가 되지않더라도 예약접수는 정상적으로 처리가 되어야한다. Async (event-driven)
   
-  ● Circuit breaker, fallback 처리 필요
+     - Circuit breaker, fallback 처리 필요
 
 
 ### Event Storming 결과
