@@ -29,7 +29,7 @@
 
 ### Event Storming 결과
   
-http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/mine/94074311dd5c4ead0bc1936dd945e6cf/-MGmV94Ai9-jH80BbfDO
+http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4ead0bc1936dd945e6cf/-MGqrwsnJeQJI0OZPGrm
 
 
 ### 이벤트도출
@@ -40,9 +40,19 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/mine/94074311dd5c4ea
 
 ![event_2](https://user-images.githubusercontent.com/45332921/93048891-e3795e80-f69a-11ea-8c4b-2cefe99b1131.jpg)
 
+![캡처2111](https://user-images.githubusercontent.com/31124658/93170244-cf4c6480-f761-11ea-9083-d181a1aeab43.JPG)
+
+![캡처2112](https://user-images.githubusercontent.com/31124658/93170240-ceb3ce00-f761-11ea-95fc-f25012045f20.JPG)
+
+![캡처2113](https://user-images.githubusercontent.com/31124658/93170245-cf4c6480-f761-11ea-95d9-7a66d79179e1.JPG)
+
+![캡처2114](https://user-images.githubusercontent.com/31124658/93170238-cd82a100-f761-11ea-90c5-627dde4c3b85.JPG)
+
+![캡처2115](https://user-images.githubusercontent.com/31124658/93170232-cc517400-f761-11ea-92c3-350a5ccf807a.JPG)
+
 ### 완성된 1차 모형
 
-![event_3](https://user-images.githubusercontent.com/45332921/93049881-e1b09a80-f69c-11ea-9a48-0bd095c3ec0d.jpg)
+![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
 
 
     - View Model 추가중
@@ -52,7 +62,6 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/mine/94074311dd5c4ea
     - 고객이 상품을 선택하여 주문한다. (OK)
     - 주문하면 상품재고를 판단하여 예약신청 or 예약불가 처리한다. (OK)
     - 예약신청이 되면 재고가 변경되고, 대리점선택되어 예약이 접수된다. (OK)
-    
     - 고객이 예약을 취소한다. (OK)
     - 예약이 취소되면 대리점배정이 취소되고, 재고가 변경된다. (OK)
     
