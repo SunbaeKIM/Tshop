@@ -42,18 +42,17 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 ### 액터, 커맨드 부착하여 읽기 좋게
 ![캡처2111](https://user-images.githubusercontent.com/31124658/93170244-cf4c6480-f761-11ea-9083-d181a1aeab43.JPG)
 
-### 어그리게잇으로 묶기
+### 바운디드 컨텍스트로 묶기
 ![캡처2112](https://user-images.githubusercontent.com/31124658/93170240-ceb3ce00-f761-11ea-95fc-f25012045f20.JPG)
-
 - app의 reservation, assignment, product 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
-### 바운디드 컨텍스트로 묶기
+### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
 ![캡처2113](https://user-images.githubusercontent.com/31124658/93170245-cf4c6480-f761-11ea-95d9-7a66d79179e1.JPG)
 
-### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
+### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
 ![캡처2114](https://user-images.githubusercontent.com/31124658/93170238-cd82a100-f761-11ea-90c5-627dde4c3b85.JPG)
 
-### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Resp)
+### 뷰모델 추가
 ![캡처2115](https://user-images.githubusercontent.com/31124658/93170232-cc517400-f761-11ea-92c3-350a5ccf807a.JPG)
 
 ### 완성된 1차 모형
@@ -116,6 +115,10 @@ http localhost:8088/reservations
 
 ## 폴리글랏 
 
-## 서킷 브레이킹 
+## 서킷 브레이킹
+- 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
+- 동시사용자 2명
+- 5초 동안 실시
 ![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
-
+- Retry 의 설정 (istio)
+- Availability 가 높아진 것을 확인 (siege)
