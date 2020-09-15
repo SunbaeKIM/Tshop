@@ -52,6 +52,7 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 - Tshop의 예약(reservation), 할당(assignment), 상품(product) 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
 
+
 ### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
 
 ![캡처3113](https://user-images.githubusercontent.com/31124658/93174035-60263e80-f768-11ea-84af-6b509f16da16.JPG)
@@ -66,7 +67,8 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 
 ![캡처3115](https://user-images.githubusercontent.com/31124658/93174033-5ef51180-f768-11ea-9a0b-ddc9cb899023.JPG)
 
-- 예약시 상품의 재고를 확인 한 뒤 수량이 충분한 경우 고객의 근처 대리점에 할당하여 예약처리 한다.
+- 예약시 상품의 1) 재고를 확인 한 뒤 수량이 충분한 경우 2) 고객의 근처 대리점에 할당하여 예약처리하며, 3) 예약된 정보는 고객센터에 보여준다.
+
 
 
 ### 완성된 1차 모형
@@ -114,10 +116,10 @@ mvn spring-boot:run
 ## CQRS
 
 ## 동기식 호출 과 Fallback 처리
-
 예약과 재고확인/재고변경 호출은 동기식 트랜잭션으로 처리 
 
 ## 비동기식 호출
+예약요청/예약취소 시 처리는 비동기 트랜잭션으로 
 
 ## 폴리글랏
 
