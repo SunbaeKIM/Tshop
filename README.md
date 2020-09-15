@@ -54,11 +54,10 @@ http://www.msaez.io/#/storming/pgdJbGn4NPYfnMHR9xnCF72Qi1h1/every/94074311dd5c4e
 
 ### 뷰모델 추가
 ![캡처2115](https://user-images.githubusercontent.com/31124658/93170232-cc517400-f761-11ea-92c3-350a5ccf807a.JPG)
-
+    - 예약시 상품의 재고를 확인 한 뒤 수량이 충분한 경우 고객의 근처 대리점에 할당하여 예약처리 한다.
+    
 ### 완성된 1차 모형
 ![캡처112](https://user-images.githubusercontent.com/31124658/93170184-afb53c00-f761-11ea-88cb-53742d03f553.JPG)
-
-    - View Model 추가중
     
 ### 1차 모형에 대한 기능적/비기능적 요구사항을 커버하는지 검증
     - 고객이 상품을 선택하여 주문한다. (OK)
