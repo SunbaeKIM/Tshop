@@ -125,6 +125,7 @@ mvn spring-boot:run
 
 ## SAGA 패턴 
 취소에 따른 보상 트랜잭션 설계
+
 예약 도메인에 취소 요청이 들어오면, 취소 이벤트가 발생하며 (ReservationCancelRequested)
 배정 도메인의 취소 정책(ReservationCancel)을 호출한다.
 배정의 예약이 삭제되고, 예약 취소 이벤트(ReservationCanceled)가 발생하며
@@ -137,6 +138,7 @@ mvn spring-boot:run
 
 ## CQRS
 하나 이상의 데이터 소스에서 데이터를 프로젝션하는 아키텍처
+
 고객은 자신의 예약 상태를 뷰 (OrderPage) 를 통해 확인할 수 있다.
 예약 요청 이벤트(ReservationRequested)가 발생되면 자동으로 생성되며,
 예약 접수 이벤트(ReservationAccepted)나 예약 취소 이벤트(ReservationCanced) 발생 시 예약 상태값이 변경된다.
@@ -220,7 +222,7 @@ public class ProductService {
 
 ## 폴리글랏
 
-고객관리 서비스(customercenter)팀에서는 DataBase를 H2가 아닌 비슷한 계열의 인메로리 DB hsql를 적용함
+고객관리 서비스(customercenter)팀에서는 DataBase를 H2가 아닌 비슷한 계열의 인메리 DB hsql를 적용함
 
 ```
 <name>customercenter</name>
