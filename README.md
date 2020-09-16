@@ -253,7 +253,6 @@ public class ProductService {
 
 ![캡처1111](https://user-images.githubusercontent.com/31124658/93170285-e25f3480-f761-11ea-951c-61d41566af9b.JPG)
 
-- Availability 가 높아진 것을 확인 (siege)
 
 ### 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
