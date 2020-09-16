@@ -124,7 +124,7 @@ mvn spring-boot:run
 ```
 
 ## SAGA 패턴 
-취소에 따른 보상 트랜잭션 설계
+- 취소에 따른 보상 트랜잭션 설계
 
 예약 도메인에 취소 요청이 들어오면, 취소 이벤트가 발생하며 (ReservationCancelRequested)
 배정 도메인의 취소 정책(ReservationCancel)을 호출한다.
@@ -137,7 +137,7 @@ mvn spring-boot:run
 ![다운로드11](https://user-images.githubusercontent.com/31124658/93279240-bdba9980-f801-11ea-8a55-c816dad807de.jpg)
 
 ## CQRS
-하나 이상의 데이터 소스에서 데이터를 프로젝션하는 아키텍처
+- 하나 이상의 데이터 소스에서 데이터를 프로젝션하는 아키텍처
 
 고객은 자신의 예약 상태를 뷰 (OrderPage) 를 통해 확인할 수 있다.
 예약 요청 이벤트(ReservationRequested)가 발생되면 자동으로 생성되며,
