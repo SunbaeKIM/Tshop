@@ -1,5 +1,12 @@
 # SKT 예판시스템 : Tshop
 
+### 서비스 소스 레파지토리
+https://github.com/jayh36/tshop-gateway.git
+https://github.com/jayh36/tshop-product.git
+https://github.com/jayh36/tshop-reservation.git
+https://github.com/jayh36/tshop-assignment.git
+https://github.com/jayh36/tshop-customercenter.git
+
 
 ### 서비스 시나리오
 
@@ -24,7 +31,7 @@
 
     - 배정관리 서비스가 되지않더라도 예약접수는 정상적으로 처리가 되어야한다. Async (event-driven)
   
-    - Circuit breaker, fallback 처리 필요
+    - Circuit breaker, fallback
 
 
 ### Event Storming 결과
@@ -116,7 +123,7 @@ mvn spring-boot:run
 
 ## CQRS
 
-## 동기식 호출 과 Fallback 처리
+## 동기식 호출 
 예약과 재고확인/재고변경 호출은 동기식 트랜잭션으로 처리
 
 ```
@@ -135,6 +142,17 @@ mvn spring-boot:run
             this.setStatus("예약불가");
         }
     }
+    
+    /**
+     * FeignClient를 사용한 ProductService 동기식호출
+     **/
+    @FeignClient(name="Product", url="${api.url.product}")
+    public interface ProductService {
+
+    @RequestMapping(method= RequestMethod.GET, path="/products/check",produces = "application/json")   
+    @ResponseBody String checkProductQuantity(@RequestParam("productId") String productId);
+
+}
 ```
 -  예약신청을 하면 현 재고상태를 확이하여, 신청/불가 판단
 
@@ -178,15 +196,9 @@ public class ProductService {
 - 상태가 예약신청가능한 상태면 배정 
 
 
-
-
-
-
-
-
 ## 폴리글랏
 
-고객관리 서비스(customercenter)에선 H2가 아닌 hsql를 적용함
+고객관리 서비스(customercenter)팀에서는 DataBase를 H2가 아닌 비슷한 계열의 인메로리 DB hsql를 적용함
 
 ```
 <name>customercenter</name>
@@ -208,7 +220,7 @@ public class ProductService {
 
 ## CI/CD 설정
 
-각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 GCP를 사용하였음
+각 구현체들은 각자의 source repository 에 구성되었고, Deployment.yaml 설정을 통해 배포 됨
 
 ## 서킷 브레이킹
 - 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
@@ -217,14 +229,13 @@ public class ProductService {
 
 ![캡처1111](https://user-images.githubusercontent.com/31124658/93170285-e25f3480-f761-11ea-951c-61d41566af9b.JPG)
 
-- Retry 의 설정 (istio)
 - Availability 가 높아진 것을 확인 (siege)
 
 ### 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 
-- 결제서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 10프로를 넘어서면 replica 를 10개까지 늘려준다:
+- 상품서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 10프로를 넘어서면 replica 를 10개까지 늘려준다:
 ```
 kubectl autoscale deploy reservation --min=1 --max=10 --cpu-percent=10
 ```
@@ -234,7 +245,7 @@ siege -c10 -t30S  -v --content-type "application/json" 'http://reservation:8080/
 ```
 - 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
 ```
-kubectl get deploy pay -w
+kubectl get deploy product -w
 ```
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
 
