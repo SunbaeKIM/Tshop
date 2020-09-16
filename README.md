@@ -2,13 +2,9 @@
 
 ### 서비스 소스 레파지토리
 https://github.com/jayh36/tshop-gateway.git
-
 https://github.com/jayh36/tshop-product.git
-
 https://github.com/jayh36/tshop-reservation.git
-
 https://github.com/jayh36/tshop-assignment.git
-
 https://github.com/jayh36/tshop-customercenter.git
 
 
@@ -132,6 +128,7 @@ mvn spring-boot:run
 예약 도메인의 상태 변경 정책(statusChange)을 호출하여 정상적으로 예약이 취소 되었음을 알려준다.
 
 - 취소 트랜잭션
+
 ![다운로드11](https://user-images.githubusercontent.com/31124658/93279240-bdba9980-f801-11ea-8a55-c816dad807de.jpg)
 
 ## CQRS
@@ -141,6 +138,7 @@ mvn spring-boot:run
 예약 접수 이벤트(ReservationAccepted)나 예약 취소 이벤트(ReservationCanced) 발생 시 예약 상태값이 변경된다.
 
 - OrderPage 뷰
+
 ![다운로드22](https://user-images.githubusercontent.com/31124658/93279239-bc896c80-f801-11ea-80c3-203f2f51a5ff.jpg)
 
 ## 동기식 호출 
