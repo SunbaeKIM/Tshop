@@ -132,7 +132,7 @@ mvn spring-boot:run
 예약 도메인의 상태 변경 정책(statusChange)을 호출하여 정상적으로 예약이 취소 되었음을 알려준다.
 
 - 취소 트랜잭션
-
+![다운로드11](https://user-images.githubusercontent.com/31124658/93279240-bdba9980-f801-11ea-8a55-c816dad807de.jpg)
 
 ## CQRS
 하나 이상의 데이터 소스에서 데이터를 프로젝션하는 아키텍처
@@ -141,7 +141,7 @@ mvn spring-boot:run
 예약 접수 이벤트(ReservationAccepted)나 예약 취소 이벤트(ReservationCanced) 발생 시 예약 상태값이 변경된다.
 
 - OrderPage 뷰
-
+![다운로드22](https://user-images.githubusercontent.com/31124658/93279239-bc896c80-f801-11ea-80c3-203f2f51a5ff.jpg)
 
 ## 동기식 호출 
 예약과 재고확인/재고변경 호출은 동기식 트랜잭션으로 처리
