@@ -222,7 +222,7 @@ public class ProductService {
 
 ## 폴리글랏
 
-고객관리 서비스(customercenter)팀에서는 DataBase를 H2가 아닌 비슷한 계열의 인메리 DB hsql를 적용함
+고객관리 서비스(customercenter)팀에서는 DataBase를 H2가 아닌 비슷한 계열의 인메모리 DB hsql를 적용함
 
 ```
 <name>customercenter</name>
